@@ -73,9 +73,10 @@ makeItem(1, 'vask op')
 // modtager et index for listen, og et index for item, og fjerner dette item fra listen.
 
 function removeItem(listIndex, itemIndex) {
+
     let myList = myData[listIndex]
 
-    console.log(myList.listItems);
+
 
     myList.listItems.splice(itemIndex, 1)
 
