@@ -77,8 +77,11 @@ function removeItem(listIndex, itemIndex) {
 
     console.log(myList.listItems);
 
-
+    myList.listItems.splice(itemIndex, 1)
 
 }
 
-removeItem(0, 0)
+
+removeItem(1, 0)
+
+
