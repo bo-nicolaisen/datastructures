@@ -3,6 +3,8 @@ let myData = [] // array der indeholder alle list descriptions
 
 
 makeDummyData()
+
+
 showList(0)
 
 
@@ -68,9 +70,55 @@ function removeItem(listIndex, itemIndex) {
 
 
 
+
+
+function showList(listIndex) {
+
+    // data
+    let myListData = myData[listIndex]
+
+    // dom element
+    let myListElement = document.getElementById('listElement')
+
+    // tømmer dom elementet
+    myListElement.innerHTML = ''
+
+    // tekst variabel indeholdende html
+    let MyHtml = `<h2>${myListData.name}</h2><ul>`
+
+    myListData.listItems.forEach((listItem, index) => {
+
+
+        MyHtml += `<li onclick="itemCallBack(${index})">${listItem.name}</li>`
+    });
+
+    MyHtml += `</ul>`
+
+    myListElement.innerHTML = MyHtml
+
+
+
+}
+
+function itemCallBack(indexClicked) {
+
+    // alert('clicked: ' + indexClicked)
+
+    removeItem(0, indexClicked)
+    //console.log(myData[0]);
+
+    // opdater view
+    showList(0)
+
+}
+
+
+
+
+
 //------------------------------------------
 
-function showList(myListIndex) {
+/* function showList(myListIndex) {
 
     let myList = myData[myListIndex]
 
@@ -98,7 +146,7 @@ function itemCallBack(index) {
     console.log(index);
     removeItem(0, index)
     showList(0)
-}
+} */
 
 
 
