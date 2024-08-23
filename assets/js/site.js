@@ -1,38 +1,25 @@
 // write cool JS hwere!!
 let myData = [] // array der indeholder alle list descriptions
 
-// generate data write data
+
+makeDummyData()
+showList(0)
 
 
-//
-let myTodoList = {
-    name: 'liste 1',//key value pair
-    listItems: []
+
+// setup statics
+
+let myListButton = document.getElementById('listbutton')
+
+myListButton.addEventListener('click', (event) => {
+
+    let myName = document.getElementById('myListname').value
+
+    makeList(myName)
 }
-console.log(myTodoList.listItems);
 
-let myListItem = {
-    name: 'stå op',
-    status: true
-}
+)
 
-console.log(myListItem);
-
-
-
-myTodoList.listItems.push(myListItem) // adder item to itemlist
-
-console.log(myTodoList);
-
-myData.push(myTodoList)
-
-console.log('my data: ' + myData);
-
-
-
-// read data
-
-console.log(myData[0].listItems[0].status);
 
 
 
@@ -45,10 +32,8 @@ function makeList(myName) {
 
     myData.push(myList)
 
-    console.table(myData);
-}
 
-makeList('køkken liste')
+}
 
 // --------------------------------------------------------
 
@@ -64,10 +49,9 @@ function makeItem(index, myName) {
 
     myData[index].listItems.push(myListItem)
 
-    console.table(myData);
+
 }
 
-makeItem(1, 'vask op')
 
 
 // modtager et index for listen, og et index for item, og fjerner dette item fra listen.
@@ -83,6 +67,58 @@ function removeItem(listIndex, itemIndex) {
 }
 
 
-removeItem(1, 0)
+
+//------------------------------------------
+
+function showList(myListIndex) {
+
+    let myList = myData[myListIndex]
+
+    let listElement = document.getElementById('listElement')
+
+    listElement.innerHTML = `<h2>${myList.name}</h2>`
 
 
+
+
+    let myHtml = ''
+
+    myList.listItems.forEach((element, index) => {
+        myHtml += `<div><h3 onclick="itemCallBack(${index})">${element.name}</h3></div>`
+    });
+
+
+    listElement.innerHTML += myHtml
+
+
+}
+
+
+function itemCallBack(index) {
+    console.log(index);
+    removeItem(0, index)
+    showList(0)
+}
+
+
+
+
+
+
+//----------------------------------------------------------------------
+
+function makeDummyData() {
+    makeList("liste 1")
+    makeList("liste 2")
+
+    makeItem(0, 'opgave 1')
+    makeItem(0, 'opgave 2')
+    makeItem(0, 'opgave 3')
+    makeItem(0, 'opgave 4')
+
+    makeItem(1, 'opgave 1')
+    makeItem(1, 'opgave 2')
+    makeItem(1, 'opgave 3')
+    makeItem(1, 'opgave 4')
+
+}
